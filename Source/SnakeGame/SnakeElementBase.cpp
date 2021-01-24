@@ -39,7 +39,9 @@ void ASnakeElementBase::Interact(AActor* Interactor, bool bIsHead)
 	auto Snake = Cast<ASnakeBase>(Interactor);
 	if (IsValid(Snake))
 	{
+		Snake->SetActorHiddenInGame(true);
 		Snake->Destroy();
+		
 	}
 }
 

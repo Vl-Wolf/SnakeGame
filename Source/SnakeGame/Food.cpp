@@ -3,6 +3,8 @@
 
 #include "Food.h"
 #include "SnakeBase.h"
+#include "PlayerPawnBase.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AFood::AFood()
@@ -35,6 +37,11 @@ void AFood::Interact(AActor* Interactor, bool bIsHead)
 		{
 			Snake->AddSnakeElement();
 			Destroy();
+		}
+		auto PlayerPawn = Cast<APlayerPawnBase>(Interactor);
+		if (IsValid(PlayerPawn))
+		{
+			PlayerPawn->CreateFoodActor();
 		}
 	}
 }

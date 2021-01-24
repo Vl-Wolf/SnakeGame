@@ -3,6 +3,7 @@
 
 #include "Bonus.h"
 #include "SnakeBase.h"
+#include "PlayerPawnBase.h"
 
 // Sets default values
 ABonus::ABonus()
@@ -32,6 +33,12 @@ void ABonus::Interact(AActor* Interactor, bool bIsHead)
 		{
 			Snake->MovementSpeed /= 2;
 			Destroy();
+		}
+
+		auto PlayerPawn = Cast<APlayerPawnBase>(Interactor);
+		if (IsValid(PlayerPawn))
+		{
+			PlayerPawn->CreateBonusActor();
 		}
 	}
 }

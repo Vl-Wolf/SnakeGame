@@ -8,6 +8,8 @@
 
 class UCameraComponent;
 class ASnakeBase;
+class AFood;
+class ABonus;
 
 UCLASS()
 class SNAKEGAME_API APlayerPawnBase : public APawn
@@ -27,6 +29,18 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 		TSubclassOf<ASnakeBase> SnakeActorClass;
 
+	UPROPERTY(BlueprintReadWrite)
+		AFood* FoodActor;
+
+	UPROPERTY(EditDefaultsOnly)
+		TSubclassOf<AFood> FoodActorClass;
+
+	UPROPERTY(BlueprintReadWrite)
+		ABonus* BonusActor;
+
+	UPROPERTY(EditDefaultsOnly)
+		TSubclassOf<ABonus> BonusActorClass;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -39,6 +53,10 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	void CreateSnakeActor();
+
+	void CreateFoodActor();
+
+	void CreateBonusActor();
 
 	UFUNCTION()
 	void HandlePlayerVerticalInput(float value);
