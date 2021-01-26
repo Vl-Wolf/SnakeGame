@@ -4,6 +4,8 @@
 #include "Bonus.h"
 #include "SnakeBase.h"
 #include "PlayerPawnBase.h"
+#include "Kismet/GameplayStatics.h"
+
 
 // Sets default values
 ABonus::ABonus()
@@ -35,10 +37,13 @@ void ABonus::Interact(AActor* Interactor, bool bIsHead)
 			Destroy();
 		}
 
-		auto PlayerPawn = Cast<APlayerPawnBase>(Interactor);
-		if (IsValid(PlayerPawn))
+		auto PlayerPawn = Cast<APlayerPawnBase>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 		{
-			PlayerPawn->CreateBonusActor();
+			if (IsValid(PlayerPawn))
+			{
+				PlayerPawn->CreateBonusActor();
+			}
+
 		}
 	}
 }

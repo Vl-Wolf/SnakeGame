@@ -38,10 +38,15 @@ void AFood::Interact(AActor* Interactor, bool bIsHead)
 			Snake->AddSnakeElement();
 			Destroy();
 		}
-		auto PlayerPawn = Cast<APlayerPawnBase>(Interactor);
-		if (IsValid(PlayerPawn))
+		
+		auto PlayerPawn = Cast<APlayerPawnBase>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 		{
-			PlayerPawn->CreateFoodActor();
+			if (IsValid(PlayerPawn))
+			{
+				PlayerPawn->CreateFoodActor();
+			}
+
 		}
 	}
 }
+

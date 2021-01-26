@@ -27,6 +27,7 @@ void ASnakeBase::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	SetActorTickInterval(MovementSpeed);
 	Move();
+	//SnakeDeadZone();
 }
 
 void ASnakeBase::AddSnakeElement(int ElementsNum)
@@ -67,6 +68,7 @@ void ASnakeBase::Move()
 		break;
 	}
 
+	
 	//AddActorWorldOffset(MovementVector);
 
 	SnakeElements[0]->ToggleCollision();
@@ -96,5 +98,21 @@ void ASnakeBase::SnakeElementOverlap(ASnakeElementBase* OverlappedElement, AActo
 		{
 			InteractableInterface->Interact(this, bIsFirst);
 		}
+	}
+
+
+}
+
+void ASnakeBase::SnakeDeadZone()
+{
+	auto SnakeHead = SnakeElements[0];
+	FVector HeadLocation = SnakeHead->GetActorLocation();
+	if ((HeadLocation.X < -970) && (HeadLocation.X > 970))
+	{
+		Destroy();
+	}
+	if ((HeadLocation.Y < -970) && (HeadLocation.Y > 970))
+	{
+		Destroy();
 	}
 }

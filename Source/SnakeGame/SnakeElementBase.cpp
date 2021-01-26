@@ -29,6 +29,8 @@ void ASnakeElementBase::Tick(float DeltaTime)
 }
 
 
+
+
 void ASnakeElementBase::SetFirstElementType_Implementation()
 {
 	MeshComponent->OnComponentBeginOverlap.AddDynamic(this, &ASnakeElementBase::HandleBeginOverlap);
