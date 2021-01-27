@@ -10,6 +10,7 @@ class UCameraComponent;
 class ASnakeBase;
 class AFood;
 class ABonus;
+class AWall;
 
 UCLASS()
 class SNAKEGAME_API APlayerPawnBase : public APawn
@@ -40,6 +41,12 @@ public:
 
 	UPROPERTY(EditDefaultsOnly)
 		TSubclassOf<ABonus> BonusActorClass;
+
+	UPROPERTY(BlueprintReadWrite)
+		AWall* WallActor;
+
+	UPROPERTY(EditDefaultsOnly)
+		TSubclassOf<AWall> WallActorClass;
 
 protected:
 	// Called when the game starts or when spawned

@@ -7,6 +7,7 @@
 #include "Food.h"
 #include "Interactable.h"
 #include "Bonus.h"
+#include "Wall.h"
 #include "Components/InputComponent.h"
 
 // Sets default values
@@ -33,7 +34,6 @@ void APlayerPawnBase::BeginPlay()
 void APlayerPawnBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	
 }
 
 // Called to bind functionality to input
